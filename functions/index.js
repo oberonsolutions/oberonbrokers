@@ -36,7 +36,7 @@ exports.updateRates = functions.pubsub.schedule('every 6 hours')
 /*  updateAssets()
 *  This function periodically updates the global crypto asset prices
 */
-exports.updateAssets = functions.pubsub.schedule('every minute')
+exports.updateAssets = functions.pubsub.schedule('every 1 minutes')
   .onRun((context) => {
 
     // Connect to Database
