@@ -17,25 +17,18 @@ exports.updateRates = functions.pubsub.schedule('every 6 hours')
     var ref = db.ref('ticker/global/rates');
 
     // Fetch Rates from Coincap
-    cfgTicker.global.rates.forEach(fiat => {
-      // Fetch Rate
-      axios.get(encodeURI('https://api.coincap.io/v2/rates/' + fiat))
-        .then(res => {
-          // Parse Response
-          const rate = {
-            id: res.data.data.id,
-            symbol: res.data.data.symbol,
-            currencySymbol: res.data.data.currencySymbol,
-            rateUsd: res.data.data.rateUsd
-          };
+    axios.get(encodeURI('https://api.coincap.io/v2/rates'))
+      .then(res => {
+        // Parse Response
+        res.data.data.forEach(fiat => {
           // Update Database
-          ref.child(fiat).update(rate);
-        })
-        .catch(error => {
-          // Log Error
-          console.error(error.message);
+          ref.child(fiat.id).update(fiat);
         });
-    })
+      })
+      .catch(error => {
+        // Log Error
+        console.error(error.message);
+      });
 
     return null;
   });
@@ -50,9 +43,8 @@ exports.updateAssets = functions.pubsub.schedule('every minute')
     const db = admin.database();
     var ref = db.ref('ticker/global/assets');
 
-    // Join the assets to search
-    const ids = cfgTicker.global.assets.join(',');
-    axios.get(encodeURI('https://api.coincap.io/v2/assets?ids=' + ids))
+    // Pull the complete ticker data
+    axios.get(encodeURI('https://api.coincap.io/v2/assets'))
       .then(res => {
         // Parse response
         res.data.data.forEach(asset => {
