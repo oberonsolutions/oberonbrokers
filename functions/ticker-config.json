@@ -1,0 +1,44 @@
+{
+  "global": {
+    "rates": [
+      "united-states-dollar",
+      "panamanian-balboa",
+      "costa-rican-colón"
+    ],
+    "assets": [
+      "bitcoin",
+      "bitcoin-cash",
+      "binance-coin",
+      "dash",
+      "dogecoin",
+      "ethereum",
+      "litecoin",
+      "xrp",
+      "multi-collateral-dai",
+      "tether",
+      "usd-coin",
+      "wrapped-bitcoin"
+    ]
+  },
+  "markets": {
+    "ptycoin": {
+      "rates": [
+        "panamanian-balboa"
+      ],
+      "markup": {
+        "bid": -0.05,
+        "ask": 0.05
+      }
+    },
+    "tico": {
+      "rates": [
+        "united-states-dollar",
+        "costa-rican-colón"
+      ],
+      "markup": {
+        "bid": -0.00,
+        "ask": 0.05
+      }
+    }
+  }
+}
