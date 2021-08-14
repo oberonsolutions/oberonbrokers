@@ -58,3 +58,76 @@ exports.updateAssets = functions.pubsub.schedule('every 1 minutes')
 
     return null;
   });
+
+/*  updateMarkets()
+ *  This function updates market data whenever a global asset or rate
+ *  changes.
+ */
+exports.updateMarkets = functions.database.ref('ticker/global')
+  .onUpdate((change, context) => {
+
+    const data = change.after.val();
+    let markets = {};
+
+    // Connect to Database
+    const db = admin.database();
+    var ref = db.ref('ticker/markets');
+
+    // Loop through defined markets
+    for (const market in cfgTicker.markets) {
+      console.info(market);
+      console.info(JSON.stringify(cfgTicker.markets[market]));
+
+      // Init market object
+      markets[market] = {};
+
+      // Loop through defined assets
+      for (const asset of cfgTicker.markets[market].assets) {
+        const assetSymbol = data.assets[asset].assetSymbol;
+
+        // Init asset object
+        markets[market][assetSymbol] = {
+          id: data.assets[asset].id,
+          name: data.assets[asset].name,
+          symbol: data.assets[asset].symbol,
+          rank: data.assets[asset].rank,
+          icon: "https://oberonbrokers.web.app/img/" + data.assets[asset].id + ".png",
+          prices: {}
+        };
+
+        // Loop through defined rates
+        for (const rate of cfgTicker.markets[market].rates) {
+
+          // Calculate Bid and Ask Prices
+          const rateUsd = parseFloat(data.rates[rate].rateUsd);
+          const priceUsd = parseFloat(data.assets[asset].priceUsd);
+          const priceLocal = priceUsd / rateUsd;
+          const rateSymbol = data.rates[rate].symbol;
+          const currencySymbol = data.rates[rate].currencySymbol;
+          const bid = (1 + cfgTicker.markets[market].markup.bid) * priceLocal;
+          const ask = (1 + cfgTicker.markets[market].markup.ask) * priceLocal;
+
+          // Do we want more or fewer decimals in our displayed price?
+          var digits = 2;
+          if (typeof cfgTicker.display !== 'undefined') {
+            if (typeof cfgTicker.display[rate] !== 'undefined') {
+              if (typeof cfgTicker.display[rate].decimals !== 'undefined') {
+                digits = cfgTicker.display[rate].decimals;
+              }
+            }
+          }
+
+          // Update the prices object
+          markets[market][assetSymbol].prices[rateSymbol] = {
+            bid: currencySymbol + ' ' + Intl.NumberFormat('en-EN', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(bid),
+            ask: currencySymbol + ' ' + Intl.NumberFormat('en-EN', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(ask)
+          };
+        };
+      };
+    };
+
+    // Update Database
+    ref.update(markets);
+
+    return null;
+  });

@@ -1,23 +1,36 @@
 {
   "markets": {
-    "ptycoin": {
+    "panama": {
       "rates": [
         "panamanian-balboa"
+      ],
+      "assets": [
+        "bitcoin",
+        "bitcoin-cash"
       ],
       "markup": {
         "bid": -0.05,
         "ask": 0.05
       }
     },
-    "tico": {
+    "costa-rica": {
       "rates": [
         "united-states-dollar",
         "costa-rican-colón"
+      ],
+      "assets": [
+        "bitcoin",
+        "bitcoin-cash"
       ],
       "markup": {
         "bid": -0.00,
         "ask": 0.05
       }
+    }
+  },
+  "display" : {
+    "costa-rican-colón" : {
+        "decimals" : 0
     }
   }
 }
