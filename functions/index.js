@@ -83,7 +83,7 @@ exports.updateMarkets = functions.database.ref('ticker/global')
 
       // Loop through defined assets
       for (const asset of cfgTicker.markets[market].assets) {
-        const assetSymbol = data.assets[asset].assetSymbol;
+        const assetSymbol = data.assets[asset].symbol;
 
         // Init asset object
         markets[market][assetSymbol] = {
