@@ -6,7 +6,17 @@
       ],
       "assets": [
         "bitcoin",
-        "bitcoin-cash"
+        "bitcoin-cash",
+        "binance-coin",
+        "dash",
+        "dogecoin",
+        "ethereum",
+        "litecoin",
+        "xrp",
+        "multi-collateral-dai",
+        "tether",
+        "usd-coin",
+        "wrapped-bitcoin"
       ],
       "markup": {
         "bid": -0.05,
@@ -20,7 +30,17 @@
       ],
       "assets": [
         "bitcoin",
-        "bitcoin-cash"
+        "bitcoin-cash",
+        "binance-coin",
+        "dash",
+        "dogecoin",
+        "ethereum",
+        "litecoin",
+        "xrp",
+        "multi-collateral-dai",
+        "tether",
+        "usd-coin",
+        "wrapped-bitcoin"
       ],
       "markup": {
         "bid": -0.00,
@@ -28,9 +48,9 @@
       }
     }
   },
-  "display" : {
-    "costa-rican-colón" : {
-        "decimals" : 0
+  "display": {
+    "costa-rican-colón": {
+      "decimals": 0
     }
   }
 }
