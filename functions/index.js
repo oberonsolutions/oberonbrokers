@@ -46,7 +46,7 @@ exports.tickerUpdate = functions.pubsub.schedule('every 1 minutes')
               name: data.assets[asset].name,
               symbol: data.assets[asset].symbol,
               rank: parseInt(data.assets[asset].rank),
-              icon: "https://oberonbrokers.web.app/img/" + asset + ".png",
+              icon: "https://oberonbrokers-a404b.web.app/img/token/" + data.assets[asset].symbol + ".png",
               prices: {}
             };
 
