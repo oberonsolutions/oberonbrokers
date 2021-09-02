@@ -1,0 +1,23 @@
+{
+  "markets": {
+    "ptycoin": {
+      "rates": [
+        "panamanian-balboa"
+      ],
+      "markup": {
+        "bid": -0.05,
+        "ask": 0.05
+      }
+    },
+    "tico": {
+      "rates": [
+        "united-states-dollar",
+        "costa-rican-colón"
+      ],
+      "markup": {
+        "bid": -0.00,
+        "ask": 0.05
+      }
+    }
+  }
+}
