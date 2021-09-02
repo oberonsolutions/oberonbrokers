@@ -2,10 +2,8 @@
   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
     "ticker": {
-      "markets": {
-        ".read": true,
-        ".write": false
-      }
+      ".read": true,
+      ".write": false
     }
   }
 }

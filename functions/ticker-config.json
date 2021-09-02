@@ -1,23 +1,60 @@
 {
   "markets": {
-    "ptycoin": {
+    "panama": {
       "rates": [
         "panamanian-balboa"
+      ],
+      "assets": [
+        "bitcoin",
+        "bitcoin-cash",
+        "binance-coin",
+        "dash",
+        "dogecoin",
+        "ethereum",
+        "litecoin",
+        "xrp",
+        "multi-collateral-dai",
+        "tether",
+        "usd-coin",
+        "wrapped-bitcoin",
+        "axie-infinity",
+        "small-love-potion"
       ],
       "markup": {
         "bid": -0.05,
         "ask": 0.05
       }
     },
-    "tico": {
+    "costa-rica": {
       "rates": [
         "united-states-dollar",
         "costa-rican-colón"
+      ],
+      "assets": [
+        "bitcoin",
+        "bitcoin-cash",
+        "binance-coin",
+        "dash",
+        "dogecoin",
+        "ethereum",
+        "litecoin",
+        "xrp",
+        "multi-collateral-dai",
+        "tether",
+        "usd-coin",
+        "wrapped-bitcoin",
+        "axie-infinity",
+        "small-love-potion"
       ],
       "markup": {
         "bid": -0.00,
         "ask": 0.05
       }
+    }
+  },
+  "display": {
+    "costa-rican-colón": {
+      "decimals": 0
     }
   }
 }
