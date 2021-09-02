@@ -16,7 +16,9 @@
         "multi-collateral-dai",
         "tether",
         "usd-coin",
-        "wrapped-bitcoin"
+        "wrapped-bitcoin",
+        "axie-infinity",
+        "small-love-potion"
       ],
       "markup": {
         "bid": -0.05,
@@ -40,7 +42,9 @@
         "multi-collateral-dai",
         "tether",
         "usd-coin",
-        "wrapped-bitcoin"
+        "wrapped-bitcoin",
+        "axie-infinity",
+        "small-love-potion"
       ],
       "markup": {
         "bid": -0.00,
