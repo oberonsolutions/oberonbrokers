@@ -14,7 +14,7 @@ exports.tickerUpdate = functions.pubsub.schedule('every 1 minutes')
 
     // Fetch Coincap Data
     const ratesPromise = axios.get('https://api.coincap.io/v2/rates');
-    const assetsPromise = axios.get('https://api.coincap.io/v2/assets');
+    const assetsPromise = axios.get('https://api.coincap.io/v2/assets?limit=1000');
     Promise.all([ratesPromise, assetsPromise])
       .then(response => {
 
@@ -39,7 +39,7 @@ exports.tickerUpdate = functions.pubsub.schedule('every 1 minutes')
           // Build Market
           ticker[market] = {};
           for (const asset of cfgTicker.markets[market].assets) {
-
+            
             // Build Asset
             ticker[market][asset] = {
               id: asset,
