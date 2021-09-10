@@ -18,7 +18,9 @@
         "usd-coin",
         "wrapped-bitcoin",
         "axie-infinity",
-        "small-love-potion"
+        "small-love-potion",
+        "cardano",
+        "solana"
       ],
       "markup": {
         "bid": -0.05,
@@ -44,7 +46,9 @@
         "usd-coin",
         "wrapped-bitcoin",
         "axie-infinity",
-        "small-love-potion"
+        "small-love-potion",
+        "cardano",
+        "solana"
       ],
       "markup": {
         "bid": -0.00,
