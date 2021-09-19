@@ -1,78 +1,112 @@
-// Connect to the Database
-var firebaseConfig = {
-    apiKey: "AIzaSyAU2V-lF-YdzHGnGtATIX1c1ORnoDMk7q4",
-    authDomain: "oberonbrokers-a404b.firebaseapp.com",
-    databaseURL: "https://oberonbrokers-a404b-default-rtdb.firebaseio.com",
-    projectId: "oberonbrokers-a404b",
-    storageBucket: "oberonbrokers-a404b.appspot.com",
-    messagingSenderId: "149254453015",
-    appId: "1:149254453015:web:a9e9179ca7be39d1d32952",
-    measurementId: "G-72XS709Z0T"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const strings = {
+    "en": {
+        "coin": "Coin",
+        "unit": "Unit",
+        "currency": "Currency",
+        "bid": "Bid",
+        "ask": "Ask",
+        "lastUpdated": "Last updated: ",
+        "outdated": "Prices may be outdated. Please confirm with our brokers."
+    },
+    "es": {
+        "coin": "Moneda",
+        "unit": "Unidad",
+        "currency": "Moneda",
+        "bid": "Bid",
+        "ask": "Ask",
+        "lastUpdated": "Última actualización: ",
+        "outdated": "Los precios pueden estar desactualizados. Confirme con neustros brokers."
+    }
+}
 
-// Initial Variables
-let market = 'panama';
+const tickerStart = (firebaseConfig, market, language) => {
 
- // Build Table
-let div = $("div#ticker")
-let table = $('<table>').addClass('ticker').addClass('table').addClass('table-striped')
-let thead = $('<thead>')
-let tbody = $('<tbody>')
-let tfoot = $('<tfoot>')
-div.append(table)
-table.append(thead)
-table.append(tbody)
-table.append(tfoot)
+    // Connect to Database
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-// Table Header
-thead.append('<tr><th>Moneda</th><th>Unidad</th><th>Moneda</th><th class="text-right">Bid</th><th class="text-right">Ask</th></tr>')
+    let div = $("div#ticker")
+  
+    // Build Warning
+    let warn = $("<div>").addClass('alert').addClass('alert-warning').text(strings[language].outdated).hide();
+    div.append(warn);
 
-// Table Footer
-tfoot.append(
-    '<tr>' + 
-    '<td id="ticker_updated" colspan="4">Última actualización: ' + Date() + '</td>' +
-    '</tr>')
+    // Build Table
+    let card = $('<div>').addClass('card');
+    let table = $('<table>').addClass('ticker').addClass('table').addClass('table-striped')
+    let thead = $('<thead>')
+    let tbody = $('<tbody>')
+    let tfoot = $('<tfoot>')
+    card.append(table)
+    table.append(thead)
+    table.append(tbody)
+    table.append(tfoot)
+    div.append(card);
 
-// Table Body
-let ticker = []
-db.ref('ticker/' + market).orderByChild('rank').on('value', (snapshot) => {
-    
-    let content = ''
-    snapshot.forEach((coin) => {
-        let data = coin.val();
-        let symbol = data.symbol;
-       
-        console.log(symbol);
-        // Table Rows
-        content += '<tr>'
-        content += '<td><img style="height: 2em;" src="img/tokens/' + symbol + '.png" alt="' + data.name + '"/> ' + data.name + '</td>'
-        content += '<td>1 ' + symbol + '</td>'
+    // Table Header
+    thead.append('<tr><th>' + strings[language].coin + '</th>' +
+        '<th>' + strings[language].unit + '</th>' +
+        '<th>' + strings[language].currency + '</th>' +
+        '<th class="text-right">' + strings[language].bid + '</th>' +
+        '<th class="text-right">' + strings[language].ask + '</th></tr>')
 
-        content += '<td>'
-        for (price of Object.keys(data.prices)) {
-            let key = price;
-            content += key + '<br/>'
+    // Table Footer
+    tfoot.append(
+        '<tr>' +
+        '<td id="ticker_updated" colspan="4">' + strings[language].lastUpdated + '</td>' +
+        '</tr>')
+
+    // Table Body
+    let ticker = []
+    db.ref('ticker').on('value', (snapshot) => {
+        let data = snapshot.val();
+        let content = '';
+
+        if (data.error) {
+            warn.show();
+        } else {
+            warn.hide();
         }
-        content += '</td>'
-        content += '<td class="text-right">'
-        for (price of Object.keys(data.prices)) {
-            let key = price;
-            content += data.prices[key].bid + '<br/>'
+
+        // Sort the coin data
+        let rows = [];
+        for (const coin in data[market]) {
+            const coinData = data[market][coin];
+            rows[coinData.rank] = coinData;
         }
-        content += '</td>'
-        content += '<td class="text-right">'
-        for (price of Object.keys(data.prices)) {
-            let key = price;
-            content += data.prices[key].ask + '<br/>'
-        }
-        content += '</td>'
-        content += '</tr>'
+
+        // Build Table
+        rows.forEach(row => {
+
+            // Table Rows
+            content += '<tr>'
+            content += '<td><img style="height: 2em;" src="' + row.icon + '" alt="' + row.name + '"/> ' + row.name + '</td>'
+            content += '<td>1 ' + row.symbol + '</td>'
+
+            content += '<td>'
+            for (price of Object.keys(row.prices)) {
+                let key = price;
+                content += key + '<br/>'
+            }
+            content += '</td>'
+            content += '<td class="text-right">'
+            for (price of Object.keys(row.prices)) {
+                let key = price;
+                content += row.prices[key].bid + '<br/>'
+            }
+            content += '</td>'
+            content += '<td class="text-right">'
+            for (price of Object.keys(row.prices)) {
+                let key = price;
+                content += row.prices[key].ask + '<br/>'
+            }
+            content += '</td>'
+            content += '</tr>'
+        })
+ 
+        // Display the table
+        tbody.html(content)
+        let event = new Date(data.last);
+        $('#ticker_updated').text(strings[language].lastUpdated + event.toLocaleString())
     });
-    tbody.html(content)
-    
-    let event = new Date()
-    $('#ticker_updated').text('Última actualización: ' + event.toLocaleString())
-
-})
+}

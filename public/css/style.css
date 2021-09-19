@@ -1,0 +1,28 @@
+
+html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #1F354A;
+  }
+  
+  footer {
+    padding: 1em;
+  }
+  
+  h1 {
+    color: navy;
+  }
+  
+  .lead {
+    color: white;
+  }
+  .alert {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  .card {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
