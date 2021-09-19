@@ -80,12 +80,23 @@ exports.tickerUpdate = functions.pubsub.schedule('every 1 minutes')
 
           }
         }
+
+        // Add timestamp to ticker
+        ticker.last = Date.now();
+        ticker.error = false;
+        ticker.errorMessage = "";
+
         // Update Database
         const db = admin.database();
         db.ref('ticker').update(ticker);
       })
       .catch(error => {
-        console.error(error.stack);
+        let ticker = {};
+        ticker.error = true;
+        ticker.errorMessage = error.message;
+
+        const db = admin.database();
+        db.ref('ticker').update(ticker);
       });
 
     return null;
