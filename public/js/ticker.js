@@ -21,12 +21,14 @@ const strings = {
 
 const tickerStart = (firebaseConfig, market, language) => {
 
+    let last = 0;
+
     // Connect to Database
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
     let div = $("div#ticker")
-  
+
     // Build Warning
     let warn = $("<div>").addClass('alert').addClass('alert-warning').text(strings[language].outdated).hide();
     div.append(warn);
@@ -60,13 +62,9 @@ const tickerStart = (firebaseConfig, market, language) => {
     let ticker = []
     db.ref('ticker').on('value', (snapshot) => {
         let data = snapshot.val();
-        let content = '';
+        last = data.last;
 
-        if (data.error) {
-            warn.show();
-        } else {
-            warn.hide();
-        }
+        let content = '';
 
         // Sort the coin data
         let rows = [];
@@ -103,10 +101,20 @@ const tickerStart = (firebaseConfig, market, language) => {
             content += '</td>'
             content += '</tr>'
         })
- 
+
         // Display the table
         tbody.html(content)
-        let event = new Date(data.last);
+        let event = new Date(last);
         $('#ticker_updated').text(strings[language].lastUpdated + event.toLocaleString())
+
     });
+
+    let lastTimer = window.setInterval(() => {
+        let now = Date.now();
+        if (now - last >= 5 * 60 * 1000) {
+            warn.show();
+        } else {
+            warn.hide();
+        }
+    }, 1000);
 }
