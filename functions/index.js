@@ -13,8 +13,9 @@ exports.tickerUpdate = functions.pubsub.schedule('every 1 minutes')
   .onRun(context => {
 
     // Fetch Coincap Data
-    const ratesPromise = axios.get('https://api.coincap.io/v2/rates');
-    const assetsPromise = axios.get('https://api.coincap.io/v2/assets?limit=1000');
+    const axiosConfig = { headers: { 'Authorization': 'Bearer 8d68f651-3829-40f8-a3e9-e6c462c14e39'}};
+    const ratesPromise = axios.get('https://api.coincap.io/v2/rates', axiosConfig);
+    const assetsPromise = axios.get('https://api.coincap.io/v2/assets?limit=1000', axiosConfig);
     Promise.all([ratesPromise, assetsPromise])
       .then(response => {
 
