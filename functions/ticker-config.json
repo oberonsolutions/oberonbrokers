@@ -89,6 +89,9 @@
   "display": {
     "costa-rican-colón": {
       "decimals": 0
+    },
+    "colombian-peso": {
+      "decimals": 0
     }
   }
 }
