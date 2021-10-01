@@ -1,5 +1,35 @@
 {
   "markets": {
+    "oberon": {
+      "rates": [
+        "united-states-dollar",
+        "panamanian-balboa",
+        "costa-rican-colón",
+        "colombian-peso"
+      ],
+      "assets": [
+        "bitcoin",
+        "bitcoin-cash",
+        "binance-coin",
+        "dash",
+        "dogecoin",
+        "ethereum",
+        "litecoin",
+        "xrp",
+        "multi-collateral-dai",
+        "tether",
+        "usd-coin",
+        "wrapped-bitcoin",
+        "axie-infinity",
+        "small-love-potion",
+        "cardano",
+        "solana"
+      ],
+      "markup": {
+        "bid": -0.05,
+        "ask": 0.05
+      }
+    },
     "panama": {
       "rates": [
         "panamanian-balboa"
