@@ -1,12 +1,7 @@
 {
   "markets": {
     "oberon": {
-      "rates": [
-        "united-states-dollar",
-        "panamanian-balboa",
-        "costa-rican-colón",
-        "colombian-peso"
-      ],
+      "rates": ["united-states-dollar", "panamanian-balboa", "costa-rican-colón", "colombian-peso"],
       "assets": [
         "bitcoin",
         "bitcoin-cash",
@@ -31,9 +26,7 @@
       }
     },
     "panama": {
-      "rates": [
-        "panamanian-balboa"
-      ],
+      "rates": ["panamanian-balboa"],
       "assets": [
         "bitcoin",
         "bitcoin-cash",
@@ -58,10 +51,7 @@
       }
     },
     "costa-rica": {
-      "rates": [
-        "united-states-dollar",
-        "costa-rican-colón"
-      ],
+      "rates": ["united-states-dollar", "costa-rican-colón"],
       "assets": [
         "bitcoin",
         "bitcoin-cash",
@@ -81,7 +71,32 @@
         "solana"
       ],
       "markup": {
-        "bid": -0.00,
+        "bid": -0.0,
+        "ask": 0.05
+      }
+    },
+    "colombia": {
+      "rates": ["colombian-peso"],
+      "assets": [
+        "bitcoin",
+        "bitcoin-cash",
+        "binance-coin",
+        "dash",
+        "dogecoin",
+        "ethereum",
+        "litecoin",
+        "xrp",
+        "multi-collateral-dai",
+        "tether",
+        "usd-coin",
+        "wrapped-bitcoin",
+        "axie-infinity",
+        "small-love-potion",
+        "cardano",
+        "solana"
+      ],
+      "markup": {
+        "bid": -0.05,
         "ask": 0.05
       }
     }
