@@ -76,7 +76,7 @@
       }
     },
     "colombia": {
-      "rates": ["colombian-peso"],
+      "rates": ["colombian-peso", "united-states-dollar"],
       "assets": [
         "bitcoin",
         "bitcoin-cash",
