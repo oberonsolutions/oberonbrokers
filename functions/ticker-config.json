@@ -79,7 +79,7 @@
       }
     },
     "colombia": {
-      "rates": ["colombian-peso", "united-states-dollar"],
+      "rates": ["colombian-peso"],
       "assets": [
         "bitcoin",
         "bitcoin-cash",
@@ -100,8 +100,8 @@
         "tron"
       ],
       "markup": {
-        "bid": -0.05,
-        "ask": 0.05
+        "bid": -0.06,
+        "ask": 0.00
       }
     }
   },
