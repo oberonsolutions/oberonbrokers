@@ -6,6 +6,7 @@
         "bitcoin",
         "bitcoin-cash",
         "binance-coin",
+        "binance-usd",
         "dash",
         "dogecoin",
         "ethereum",
@@ -33,6 +34,7 @@
         "bitcoin",
         "bitcoin-cash",
         "binance-coin",
+        "binance-usd",
         "dash",
         "dogecoin",
         "ethereum",
@@ -60,6 +62,7 @@
         "bitcoin",
         "bitcoin-cash",
         "binance-coin",
+        "binance-usd",
         "dash",
         "dogecoin",
         "ethereum",
@@ -87,6 +90,7 @@
         "bitcoin",
         "bitcoin-cash",
         "binance-coin",
+        "binance-usd",
         "dash",
         "dogecoin",
         "ethereum",
@@ -104,7 +108,7 @@
         "avalanche"
       ],
       "markup": {
-        "bid": -0.06,
+        "bid": -0.05,
         "ask": -0.02
       }
     }
