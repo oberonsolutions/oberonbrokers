@@ -16,16 +16,13 @@
         "tether",
         "usd-coin",
         "wrapped-bitcoin",
-        "axie-infinity",
-        "small-love-potion",
         "cardano",
         "solana",
-        "tron",
-        "avalanche"
+        "tron"
       ],
       "markup": {
-        "bid": -0.05,
-        "ask": 0.05
+        "bid": -0.03,
+        "ask": 0.03
       }
     },
     "panama": {
@@ -44,16 +41,13 @@
         "tether",
         "usd-coin",
         "wrapped-bitcoin",
-        "axie-infinity",
-        "small-love-potion",
         "cardano",
         "solana",
-        "tron",
-        "avalanche"
+        "tron"
       ],
       "markup": {
-        "bid": -0.05,
-        "ask": 0.05
+        "bid": -0.03,
+        "ask": 0.03
       }
     },
     "costa-rica": {
@@ -72,16 +66,13 @@
         "tether",
         "usd-coin",
         "wrapped-bitcoin",
-        "axie-infinity",
-        "small-love-potion",
         "cardano",
         "solana",
-        "tron",
-        "avalanche"
+        "tron"
       ],
       "markup": {
-        "bid": -0.05,
-        "ask": 0.05
+        "bid": -0.03,
+        "ask": 0.03
       }
     },
     "colombia": {
@@ -100,16 +91,13 @@
         "tether",
         "usd-coin",
         "wrapped-bitcoin",
-        "axie-infinity",
-        "small-love-potion",
         "cardano",
         "solana",
-        "tron",
-        "avalanche"
+        "tron"
       ],
       "markup": {
-        "bid": -0.05,
-        "ask": -0.02
+        "bid": -0.03,
+        "ask": 0.03
       }
     }
   },
